@@ -28,10 +28,8 @@ window.onload = function() {
             //Instantiate land generator
             var landGenerator = new LandGeneration(game);
             // Let's make a load of tiles on a grid.
-            landGenerator.generateFloor();
-            landGenerator.drawTiles();
+            landGenerator.generate();;
             floorGroup = landGenerator.floorGroup;
-            console.log(floorGroup);
     
             // Provide a 3D position for the cursor
             cursorPos = new Phaser.Plugin.Isometric.Point3();
