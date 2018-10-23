@@ -6,12 +6,13 @@ window.onload = function() {
     
     Game.Boot = function (game) { };
     
-    var isoGroup, cursorPos, cursor;
+    var floorGroup, cursorPos, cursor;
     
     
     Game.Boot.prototype =
     {
         preload: function () {
+            game.load.image('wood', '../assets/tiles/ClintTest.png');
             game.load.image('tile', '../assets/tiles/KaelanTest.png');
     
             game.time.advancedTiming = true;
@@ -27,8 +28,10 @@ window.onload = function() {
             //Instantiate land generator
             var landGenerator = new LandGeneration(game);
             // Let's make a load of tiles on a grid.
+            landGenerator.generateFloor();
             landGenerator.drawTiles();
-            isoGroup = landGenerator.isoGroup;
+            floorGroup = landGenerator.floorGroup;
+            console.log(floorGroup);
     
             // Provide a 3D position for the cursor
             cursorPos = new Phaser.Plugin.Isometric.Point3();
@@ -40,7 +43,7 @@ window.onload = function() {
             game.iso.unproject(game.input.activePointer.position, cursorPos);
     
             // Loop through all tiles and test to see if the 3D position from above intersects with the automatically generated IsoSprite tile bounds.
-            isoGroup.forEach(function (tile) {
+            floorGroup.forEach(function (tile) {
                 var inBounds = tile.isoBounds.containsXY(cursorPos.x, cursorPos.y);
                 // If it does, do a little animation and tint change.
                 if (!tile.selected && inBounds) {
