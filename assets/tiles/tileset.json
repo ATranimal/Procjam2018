@@ -2,7 +2,7 @@
 
 {
 	"filename": "attic-b",
-	"frame": {"x":798,"y":0,"w":38,"h":54},
+	"frame": {"x":152,"y":236,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -10,7 +10,7 @@
 },
 {
 	"filename": "attic-door-closed-b",
-	"frame": {"x":532,"y":0,"w":38,"h":54},
+	"frame": {"x":114,"y":128,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -18,7 +18,7 @@
 },
 {
 	"filename": "attic-door-closed-y",
-	"frame": {"x":570,"y":0,"w":38,"h":54},
+	"frame": {"x":0,"y":128,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -26,7 +26,7 @@
 },
 {
 	"filename": "attic-door-open-b",
-	"frame": {"x":646,"y":0,"w":38,"h":54},
+	"frame": {"x":166,"y":74,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -34,7 +34,7 @@
 },
 {
 	"filename": "attic-door-open-y",
-	"frame": {"x":684,"y":0,"w":38,"h":54},
+	"frame": {"x":128,"y":74,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -42,7 +42,7 @@
 },
 {
 	"filename": "attic-y",
-	"frame": {"x":608,"y":0,"w":38,"h":54},
+	"frame": {"x":242,"y":74,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -50,7 +50,7 @@
 },
 {
 	"filename": "bathroom-b",
-	"frame": {"x":256,"y":54,"w":64,"h":37},
+	"frame": {"x":0,"y":74,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -58,7 +58,7 @@
 },
 {
 	"filename": "bathroom-door-closed-b",
-	"frame": {"x":722,"y":0,"w":38,"h":54},
+	"frame": {"x":38,"y":236,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -66,7 +66,7 @@
 },
 {
 	"filename": "bathroom-door-closed-y",
-	"frame": {"x":912,"y":0,"w":38,"h":54},
+	"frame": {"x":114,"y":182,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -74,7 +74,7 @@
 },
 {
 	"filename": "bathroom-door-open-b",
-	"frame": {"x":874,"y":0,"w":38,"h":54},
+	"frame": {"x":280,"y":74,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -82,7 +82,7 @@
 },
 {
 	"filename": "bathroom-door-open-y",
-	"frame": {"x":950,"y":0,"w":38,"h":54},
+	"frame": {"x":152,"y":182,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -90,7 +90,7 @@
 },
 {
 	"filename": "bathroom-y",
-	"frame": {"x":320,"y":54,"w":64,"h":37},
+	"frame": {"x":0,"y":0,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -98,7 +98,7 @@
 },
 {
 	"filename": "bathroomw-b",
-	"frame": {"x":760,"y":0,"w":38,"h":54},
+	"frame": {"x":190,"y":182,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -106,7 +106,7 @@
 },
 {
 	"filename": "bathroomw-y",
-	"frame": {"x":38,"y":0,"w":38,"h":54},
+	"frame": {"x":76,"y":182,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -114,7 +114,7 @@
 },
 {
 	"filename": "bedroom-b",
-	"frame": {"x":494,"y":0,"w":38,"h":54},
+	"frame": {"x":0,"y":182,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -122,7 +122,7 @@
 },
 {
 	"filename": "bedroom-door-closed-b",
-	"frame": {"x":152,"y":0,"w":38,"h":54},
+	"frame": {"x":228,"y":182,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -130,7 +130,7 @@
 },
 {
 	"filename": "bedroom-door-closed-y",
-	"frame": {"x":114,"y":0,"w":38,"h":54},
+	"frame": {"x":0,"y":236,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -138,7 +138,7 @@
 },
 {
 	"filename": "bedroom-door-open-y",
-	"frame": {"x":190,"y":0,"w":38,"h":54},
+	"frame": {"x":114,"y":236,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -146,7 +146,7 @@
 },
 {
 	"filename": "bedroom-y",
-	"frame": {"x":76,"y":0,"w":38,"h":54},
+	"frame": {"x":76,"y":236,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -154,7 +154,7 @@
 },
 {
 	"filename": "carpet-b",
-	"frame": {"x":192,"y":54,"w":64,"h":37},
+	"frame": {"x":256,"y":37,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -162,7 +162,7 @@
 },
 {
 	"filename": "carpet-y",
-	"frame": {"x":512,"y":54,"w":64,"h":37},
+	"frame": {"x":128,"y":0,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -170,7 +170,7 @@
 },
 {
 	"filename": "kitchen-b",
-	"frame": {"x":640,"y":54,"w":64,"h":37},
+	"frame": {"x":192,"y":0,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -178,7 +178,7 @@
 },
 {
 	"filename": "kitchen-door-closed-b",
-	"frame": {"x":304,"y":0,"w":38,"h":54},
+	"frame": {"x":266,"y":182,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -186,7 +186,7 @@
 },
 {
 	"filename": "kitchen-door-closed-y",
-	"frame": {"x":418,"y":0,"w":38,"h":54},
+	"frame": {"x":38,"y":182,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -194,7 +194,7 @@
 },
 {
 	"filename": "kitchen-door-open-b",
-	"frame": {"x":380,"y":0,"w":38,"h":54},
+	"frame": {"x":266,"y":128,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -202,7 +202,7 @@
 },
 {
 	"filename": "kitchen-y",
-	"frame": {"x":704,"y":54,"w":64,"h":37},
+	"frame": {"x":64,"y":0,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -210,7 +210,7 @@
 },
 {
 	"filename": "kitchenw-b",
-	"frame": {"x":342,"y":0,"w":38,"h":54},
+	"frame": {"x":204,"y":74,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -218,7 +218,7 @@
 },
 {
 	"filename": "spookywood-b",
-	"frame": {"x":576,"y":54,"w":64,"h":37},
+	"frame": {"x":256,"y":0,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -226,7 +226,7 @@
 },
 {
 	"filename": "spookywood-y",
-	"frame": {"x":384,"y":54,"w":64,"h":37},
+	"frame": {"x":0,"y":37,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -234,7 +234,7 @@
 },
 {
 	"filename": "stone-b",
-	"frame": {"x":128,"y":54,"w":64,"h":37},
+	"frame": {"x":128,"y":37,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -242,7 +242,7 @@
 },
 {
 	"filename": "stone-door-closed-b",
-	"frame": {"x":266,"y":0,"w":38,"h":54},
+	"frame": {"x":76,"y":128,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -250,7 +250,7 @@
 },
 {
 	"filename": "stone-door-closed-y",
-	"frame": {"x":456,"y":0,"w":38,"h":54},
+	"frame": {"x":190,"y":128,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -258,7 +258,7 @@
 },
 {
 	"filename": "stone-door-open-b",
-	"frame": {"x":228,"y":0,"w":38,"h":54},
+	"frame": {"x":152,"y":128,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -266,7 +266,7 @@
 },
 {
 	"filename": "stone-door-open-y",
-	"frame": {"x":0,"y":0,"w":38,"h":54},
+	"frame": {"x":228,"y":128,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -274,7 +274,7 @@
 },
 {
 	"filename": "stone-y",
-	"frame": {"x":64,"y":54,"w":64,"h":37},
+	"frame": {"x":192,"y":37,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -282,7 +282,7 @@
 },
 {
 	"filename": "stonew-y",
-	"frame": {"x":836,"y":0,"w":38,"h":54},
+	"frame": {"x":38,"y":128,"w":38,"h":54},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":54},
@@ -290,7 +290,7 @@
 },
 {
 	"filename": "wood-b",
-	"frame": {"x":0,"y":54,"w":64,"h":37},
+	"frame": {"x":64,"y":37,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -298,7 +298,7 @@
 },
 {
 	"filename": "wood-y",
-	"frame": {"x":448,"y":54,"w":64,"h":37},
+	"frame": {"x":64,"y":74,"w":64,"h":37},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":37},
@@ -309,8 +309,8 @@
 	"version": "1.0",
 	"image": "tileset.png",
 	"format": "RGBA8888",
-	"size": {"w":988,"h":91},
+	"size": {"w":320,"h":320},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:1daf23733e55ea9d99bd5659c8a5c72e:6915ebf5e4da1a79e66611b93760672f:ace0e5e82375743ccde85e973fd84fb5$"
+	"smartupdate": "$TexturePacker:SmartUpdate:b1672f4c3ae7ae30e5776f767e56c6b0:6915ebf5e4da1a79e66611b93760672f:ace0e5e82375743ccde85e973fd84fb5$"
 }
 }
