@@ -1,0 +1,28 @@
+file naming conventions: 
+
+(object type)-(location)-(property)-(state)-(color)
+
+eg. 
+
+wall-bathroom-door-closed-y
+
+is a wall object
+in the bathroom
+with a door
+that is closed
+and it's part of the yellow colorset. 
+
+If a section is irrelevant it's just skipped (eg. floor-bathroom-y doesn't have a property or a state) 
+
+locations:
+1. attic
+2. basement
+3. bathroom
+4. bedroom
+5. kitchen
+6. living room
+
+colors (represented in 10s column):
+0x. blue
+1x. yellow
+2x. red

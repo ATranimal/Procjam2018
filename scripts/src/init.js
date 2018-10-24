@@ -1,6 +1,6 @@
 window.onload = function() {
 
-    var game = new Phaser.Game(800, 400, Phaser.AUTO, 'test', null, true, false);
+    var game = new Phaser.Game(1440, 900, Phaser.AUTO, 'game', null, true, false);
     
     var Game = function (game) { };
     
