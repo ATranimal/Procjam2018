@@ -10,14 +10,15 @@ var LandGeneration = function (game) {
     this.floor = [];
     this.floorGroup = this.game.add.group();
     this.floorNames = [];
-    this.floorNames[0] = "wood";
-    this.floorNames[1] = "tile";
+    this.floorNames[0] = "empty";
+    this.floorNames[1] = "wood-b";
 
     // Walls
     this.walls = [];
     this.wallGroup = this.game.add.group();
     this.wallNames = [];
-    this.wallNames[0] = "sw_blue";
+    this.wallNames[0] = "empty";
+    this.wallNames[1] = "bedroom-b";
 
     // Objects
 }
@@ -98,11 +99,29 @@ LandGeneration.prototype.renderTiles = function () {
     var tile;
     for (var y = 0; y < this.floor.length; y++) {
         for (var x = 0; x < this.floor[y].length; x++) {
-            // This will add an isosprite sat its correct x,y  value, and look up the correct tile name based on the value in the floor grid
-            tile = this.game.add.isoSprite(x * 36, y * 36, 0, this.floorNames[this.floor[y][x]], 0, this.floorGroup);
-            tile.anchor.set(0.5, 0);
-        } 
+            if (this.floor[y][x] != 0) {
+                // This will add an isosprite sat its correct x,y  value, and look up the correct tile name based on the value in the floor grid
+                tile = this.game.add.isoSprite(x * 36, y * 36, 0, 'tileset', this.floorNames[this.floor[y][x]], this.floorGroup);
+                tile.anchor.set(0.5, 0);
+            }
+        }
     }
 
-    console.log(this.walls);
+    // Rendering the wall
+    var wall;
+    for (var y = 0; y < this.walls.length; y++) {
+        for (var x = 0; x < this.walls[y].length; x++) {
+            // top left wall
+            if (this.walls[y][x] === 1 || this.walls[y][x] === 3) {
+                wall = this.game.add.isoSprite(x * 36, y * 36, 0, 'tileset', this.wallNames[1], this.wallGroup);
+                wall.anchor.set(0, 0.72);
+                wall.scale.x *= -1;
+            }
+            // top right wall
+            if (this.walls[y][x] === 2 || this.walls[y][x] === 3) {
+                wall = this.game.add.isoSprite(x * 36, y * 36, 0, 'tileset', this.wallNames[1], this.wallGroup);
+                wall.anchor.set(0, 0.72);
+            }
+        }
+    }
 }

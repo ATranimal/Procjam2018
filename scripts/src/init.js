@@ -12,9 +12,8 @@ window.onload = function() {
     Game.Boot.prototype =
     {
         preload: function () {
-            game.load.image('wood', '../assets/tiles/ClintTest.png');
-            game.load.image('tile', '../assets/tiles/KaelanTest.png');
-    
+            game.load.atlas('tileset', "../assets/tiles/tileset.png", "../assets/tiles/tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
+
             game.time.advancedTiming = true;
     
             // Add and enable the plug-in.
@@ -28,7 +27,7 @@ window.onload = function() {
             //Instantiate land generator
             var landGenerator = new LandGeneration(game);
             // Let's make a load of tiles on a grid.
-            landGenerator.generate();;
+            landGenerator.generate();
             floorGroup = landGenerator.floorGroup;
     
             // Provide a 3D position for the cursor
