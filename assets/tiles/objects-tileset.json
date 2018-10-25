@@ -1,0 +1,124 @@
+{"frames": [
+
+{
+	"filename": "object-kitchen-counter-b",
+	"frame": {"x":0,"y":0,"w":40,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":36},
+	"sourceSize": {"w":40,"h":36}
+},
+{
+	"filename": "object-kitchen-counter-corner-b",
+	"frame": {"x":40,"y":0,"w":64,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":36},
+	"sourceSize": {"w":64,"h":36}
+},
+{
+	"filename": "object-kitchen-fridge-b",
+	"frame": {"x":0,"y":36,"w":22,"h":39},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":39},
+	"sourceSize": {"w":22,"h":39}
+},
+{
+	"filename": "object-kitchen-kitchenstool-b",
+	"frame": {"x":22,"y":36,"w":10,"h":12},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":10,"h":12},
+	"sourceSize": {"w":10,"h":12}
+},
+{
+	"filename": "object-kitchen-kitchentable-b",
+	"frame": {"x":32,"y":36,"w":30,"h":30},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":30},
+	"sourceSize": {"w":30,"h":30}
+},
+{
+	"filename": "object-kitchen-stove-b",
+	"frame": {"x":62,"y":36,"w":22,"h":34},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":22,"h":34},
+	"sourceSize": {"w":22,"h":34}
+},
+{
+	"filename": "object-livingroom-armchair-b",
+	"frame": {"x":84,"y":36,"w":14,"h":26},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":26},
+	"sourceSize": {"w":14,"h":26}
+},
+{
+	"filename": "object-livingroom-armchair-back-b",
+	"frame": {"x":0,"y":75,"w":14,"h":26},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":26},
+	"sourceSize": {"w":14,"h":26}
+},
+{
+	"filename": "object-livingroom-chair-b",
+	"frame": {"x":14,"y":75,"w":14,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":23},
+	"sourceSize": {"w":14,"h":23}
+},
+{
+	"filename": "object-livingroom-chair-back-b",
+	"frame": {"x":28,"y":75,"w":14,"h":23},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":23},
+	"sourceSize": {"w":14,"h":23}
+},
+{
+	"filename": "object-livingroom-fancychair-b",
+	"frame": {"x":42,"y":75,"w":20,"h":28},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":28},
+	"sourceSize": {"w":20,"h":28}
+},
+{
+	"filename": "object-livingroom-fancychair-back-b",
+	"frame": {"x":62,"y":75,"w":20,"h":28},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":28},
+	"sourceSize": {"w":20,"h":28}
+},
+{
+	"filename": "object-livingroom-woodchair-b",
+	"frame": {"x":82,"y":75,"w":13,"h":22},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":13,"h":22},
+	"sourceSize": {"w":13,"h":22}
+},
+{
+	"filename": "object-livingroom-woodchair-back-b",
+	"frame": {"x":95,"y":75,"w":13,"h":22},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":13,"h":22},
+	"sourceSize": {"w":13,"h":22}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "objects-tileset.png",
+	"format": "RGBA8888",
+	"size": {"w":108,"h":103},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:5dc177a9ef8a5d372af7bf3b3a65c398:8d241e260e573d2ab489139613fadd07:6e3c70e6f197ede9b1a95e675ef66ca0$"
+}
+}
