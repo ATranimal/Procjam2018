@@ -2,8 +2,8 @@ var LandGeneration = function (game) {
     this.game = game;
 
     // Width & Length of story
-    this.floorWidth = 16;
-    this.floorLength = 16;
+    this.floorWidth = 8;
+    this.floorLength = 8;
 
     //////////
     // There will be 3 isogroups per story : Floor, Walls, Objects
@@ -32,6 +32,15 @@ var LandGeneration = function (game) {
 
 
     // Objects
+    this.objects = [];
+    this.objectGroup = this.game.add.group();
+    this.objectNames = [];
+    this.objectNames[0] = "empty";
+    this.objectNames[1] = "object-livingroom-woodchair-b";
+    this.objectNames[2] = "object-livingroom-fancychair-back-b";
+    this.objectNames[3] = "object-livingroom-armchair-b";
+    this.objectNames[4] = "object-kitchen-fridge-b"
+    this.objectNames[5] = "object-kitchen-counter-b";
 }
  
 LandGeneration.prototype.generate = function() {
@@ -40,6 +49,7 @@ LandGeneration.prototype.generate = function() {
  
     this.generateWalls();
 
+    this.generateObjects();
 
     this.renderTiles();
 
@@ -67,16 +77,14 @@ LandGeneration.prototype.generateFloor = function () {
     }
 
     // // Entrance hallway
-    // var entranceWidth = this.randomInt(2, 6);
-    // var entranceLength = this.randomInt(4, 10);
-    var entranceWidth = 4;
-    var entranceLength = 6;
+    var entranceWidth = this.randomInt(1, 3);
+    var entranceLength = this.randomInt(2, 4);
 
 
-    this.addRoom(6, 16 - entranceLength, entranceWidth, entranceLength, 6);
+    this.addRoom(3, this.floorLength - entranceLength, entranceWidth, entranceLength, 6);
 
     // Test 1
-    var roomsOnFloor = this.randomInt(9, 12);
+    var roomsOnFloor = this.randomInt(4, 6);
     // var roomsOnFloor = 0;
 
     for (var i = 0; i < roomsOnFloor; i++) {        
@@ -96,10 +104,10 @@ LandGeneration.prototype.generateFloor = function () {
 
         //TODO: Could optimize this by only setting variables at the end using the random coordinate trackers
         if (xy === 0) {
-            newWidth = this.randomInt(2, 6);
+            newWidth = this.randomInt(1,3);
 
-            lengthUp = this.randomInt(0, 3);
-            lengthDown = this.randomInt(0, 3);
+            lengthUp = this.randomInt(0, 2);
+            lengthDown = this.randomInt(0, 2);
             newLength = 1 + lengthUp + lengthDown
             // newWidth = 4;
             // lengthUp = 2;
@@ -115,10 +123,10 @@ LandGeneration.prototype.generateFloor = function () {
             }
         }
         else if (xy == 1) {
-            newLength = this.randomInt(2, 6);
+            newLength = this.randomInt(1, 3);
 
-            widthLeft = this.randomInt(0, 3);
-            widthRight = this.randomInt(0, 3);
+            widthLeft = this.randomInt(0, 2);
+            widthRight = this.randomInt(0, 2);
             
             newWidth = 1 + widthLeft + widthRight;
 
@@ -179,7 +187,7 @@ LandGeneration.prototype.generateWalls = function () {
 }
 
 //// #START REGION
-//// helper functions for procegn
+//// helper functions for procgen
 
 // Helper function for creating a random int
 LandGeneration.prototype.randomInt = function(start, end) {
@@ -240,6 +248,22 @@ LandGeneration.prototype.findOpenings = function() {
 }
 //// #END REGION
 
+LandGeneration.prototype.generateObjects = function () {
+    for(var y = 0; y < this.floors.length; y++) {
+        var row = [];
+        for(var x = 0; x < this.floors[y].length; x++) {
+            if (this.floors[y][x] != 0 && this.randomInt(1, 100) < 10) {
+                row.push(this.randomInt(1,5));
+            }
+            else { 
+                row.push(0);
+            }
+        }
+
+        this.objects.push(row);
+    }
+}
+
 
 LandGeneration.prototype.renderTiles = function () {  
     // Rendering the floor
@@ -253,9 +277,19 @@ LandGeneration.prototype.renderTiles = function () {
             }
         }
     }
-
-    console.log("floor is: ");
     console.log(this.floors);
+    console.log(this.objects);
+    // Rendering Objects
+    var object;
+    for (var y = 0; y < this.objects.length; y++) {
+        for (var x = 0; x < this.objects[y].length; x++) {
+            if (this.objects[y][x] != 0) {
+                object = this.game.add.isoSprite(x * 36, y * 36, 0, 'objects', this.objectNames[this.objects[y][x]], this.objectGroup);
+                object.anchor.set(0.5, 0.5);
+            }
+        }
+    }
+
     // Rendering the wall
     var wall;
     for (var y = 0; y < this.walls.length; y++) {
@@ -275,4 +309,5 @@ LandGeneration.prototype.renderTiles = function () {
             }
         }
     }
+
 }

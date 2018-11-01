@@ -1,6 +1,6 @@
 window.onload = function() {
 
-    var game = new Phaser.Game(1440, 900, Phaser.AUTO, 'game', null, true, false);
+    var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', null, true, false);
     
     var Game = function (game) { };
     
@@ -14,6 +14,7 @@ window.onload = function() {
     {
         preload: function () {
             game.load.atlas('tileset', "../assets/tiles/tileset.png", "../assets/tiles/tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
+            game.load.atlas('objects', "../assets/tiles/objects-tileset.png", "../assets/tiles/objects-tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
 
             game.time.advancedTiming = true;
     
