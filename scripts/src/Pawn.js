@@ -7,6 +7,8 @@ var Pawn = function (game, landGenerator) {
     this.visitedFloor = [];
 
     this.pawnGroup = this.game.add.group()
+
+    this.time = this.game.time.now;
 }
 
 Pawn.prototype.init = function init() {
@@ -37,29 +39,39 @@ Pawn.prototype.addVisitedFloor = function(x, y) {
     this.visitedFloor[y][x] = 1;
 }
 
-Pawn.prototype.move = function(direction) {
-    if (direction == "up") {
+Pawn.prototype.move = function(x, y) {
+    if (y != this.coordinates[1]) {
+        this.coordinates[1] = y;
+    }
+    else if (x != this.coordinates[0]) {
+        this.coordinates[0] = x;
+    }
+
+    if (x - this.coordinates[1] < 0 || y - this.coordinates[0] < 0) {
         this.pawn.animations.play('happy-walk-back');
-        this.coordinates[1] -= 1;
     }
-    else if (direction == "down") {
+    else {
         this.pawn.animations.play('happy-walk');
-        this.coordinates[1] += 1;
     }
-    else if (direction == "left") {
-        this.pawn.animations.play('happy-walk-back');
-        this.coordinates[0] -= 1;
-    }
-    else if (direction == "right") {
-        this.pawn.animations.play('happy-walk');
-        this.coordinates[0] += 1;
-    }
-    
-    var self = this;
-    var tween = this.game.add.tween(this.pawn).to({ isoY: this.coordinates[1] * 36, isoX: this.coordinates[0] * 36 }, 4000, Phaser.Easing.Quadratic.InOut, true);
-    tween.onComplete.add(function () {
-        self.game.iso.simpleSort(self.landGenerator.wallGroup);
-    });
+
+    var tween = this.game.add.tween(this.pawn).to({ isoY: this.coordinates[1] * 36, isoX: this.coordinates[0] * 36 }, 3000, Phaser.Easing.Quadratic.InOut, true);
 
     this.addVisitedFloor(this.coordinates[0], this.coordinates[1]);
+}
+
+
+////
+// #START REGION UPDATE
+
+
+Pawn.prototype.update = function () {
+    if (this.game.time.now - this.time > 6000) {
+        this.time = this.game.time.now;;
+
+        //// RNG DIFFERENT ACTIONS
+
+        // Explore Room
+
+        // Move to different room
+    }
 }

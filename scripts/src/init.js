@@ -55,6 +55,8 @@ window.onload = function() {
     
             interaction.highlightFloor(cursorPos);
             interaction.highlightWalls(cursorPos);
+
+            pawn.update();
         },
         render: function () {
             game.debug.text("I love Kaelan");
