@@ -8,13 +8,15 @@ window.onload = function() {
     
     var floorGroup, wallGroup, cursorPos, cursor;
     
-    var landGenerator, interaction;
+    var landGenerator, interaction, pawn;
     
     Game.Boot.prototype =
     {
         preload: function () {
             game.load.atlas('tileset', "../assets/tiles/tileset.png", "../assets/tiles/tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
             game.load.atlas('objects', "../assets/tiles/objects-tileset.png", "../assets/tiles/objects-tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
+            game.load.atlas('boys', "../assets/tiles/boys-tileset.png", "../assets/tiles/boys-tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
+
 
             game.time.advancedTiming = true;
     
@@ -36,6 +38,10 @@ window.onload = function() {
             // Instantiate Interaction Manager
             interaction = new InteractionManager(game, floorGroup, wallGroup);
     
+            // Instantiate Pawn
+            pawn = new Pawn(game);
+            pawn.init();
+
             // Provide a 3D position for the cursor
             cursorPos = new Phaser.Plugin.Isometric.Point3();
         },
