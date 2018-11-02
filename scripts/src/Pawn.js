@@ -31,18 +31,35 @@ Pawn.prototype.init = function init() {
     this.pawn.animations.add('happy-walk-back', ["happy1-back", "happy2-back"], 2, true);
 
     this.pawn.animations.play('happy-walk');
-
-    this.moveUp();
 }
 
 Pawn.prototype.addVisitedFloor = function(x, y) {
     this.visitedFloor[y][x] = 1;
 }
 
-Pawn.prototype.moveUp = function() {
-    this.coordinates[1] -= 1;
-    this.pawn.animations.play('happy-walk-back');
-    this.game.add.tween(this.pawn).to({ isoY: this.coordinates[1] * 36 }, 4000, Phaser.Easing.Quadratic.InOut, true);
+Pawn.prototype.move = function(direction) {
+    if (direction == "up") {
+        this.pawn.animations.play('happy-walk-back');
+        this.coordinates[1] -= 1;
+    }
+    else if (direction == "down") {
+        this.pawn.animations.play('happy-walk');
+        this.coordinates[1] += 1;
+    }
+    else if (direction == "left") {
+        this.pawn.animations.play('happy-walk-back');
+        this.coordinates[0] -= 1;
+    }
+    else if (direction == "right") {
+        this.pawn.animations.play('happy-walk');
+        this.coordinates[0] += 1;
+    }
+    
+    var self = this;
+    var tween = this.game.add.tween(this.pawn).to({ isoY: this.coordinates[1] * 36, isoX: this.coordinates[0] * 36 }, 4000, Phaser.Easing.Quadratic.InOut, true);
+    tween.onComplete.add(function () {
+        self.game.iso.simpleSort(self.landGenerator.wallGroup);
+    });
 
-    this.game.iso.simpleSort(this.landGenerator.wallGroup);
+    this.addVisitedFloor(this.coordinates[0], this.coordinates[1]);
 }

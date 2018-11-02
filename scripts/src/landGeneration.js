@@ -79,8 +79,8 @@ LandGeneration.prototype.generateFloor = function () {
     }
 
     // // Entrance hallway
-    // var entranceWidth = this.randomInt(1, 3);
-    var entranceWidth = 1;
+    var entranceWidth = this.randomInt(1, 3);
+    // var entranceWidth = 1;
     var entranceLength = this.randomInt(2, 4);
 
 
