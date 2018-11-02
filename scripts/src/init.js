@@ -6,7 +6,7 @@ window.onload = function() {
     
     Game.Boot = function (game) { };
     
-    var floorGroup, wallGroup, cursorPos, cursor;
+    var floorGroup, wallGroup, objectGroup, pawnGroup, cursorPos, cursor;
     
     var landGenerator, interaction, pawn;
     
@@ -34,18 +34,21 @@ window.onload = function() {
             landGenerator.generate();
             floorGroup = landGenerator.floorGroup;
             wallGroup = landGenerator.wallGroup;
+            // objectGroup = landGenerator.objectGroup;
+
+            // Instantiate Pawn
+            pawn = new Pawn(game, landGenerator);
+            pawn.init();
+            pawnGroup = pawn.pawnGroup;
 
             // Instantiate Interaction Manager
             interaction = new InteractionManager(game, floorGroup, wallGroup);
-    
-            // Instantiate Pawn
-            pawn = new Pawn(game);
-            pawn.init();
-
+            game.iso.simpleSort(wallGroup);
             // Provide a 3D position for the cursor
             cursorPos = new Phaser.Plugin.Isometric.Point3();
         },
         update: function () {
+            
             // Update the cursor position.
             // It's important to understand that screen-to-isometric projection means you have to specify a z position manually, as this cannot be easily
             // determined from the 2D pointer position without extra trickery. By default, the z position is 0 if not set.

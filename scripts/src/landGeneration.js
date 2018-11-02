@@ -49,7 +49,7 @@ LandGeneration.prototype.generate = function() {
  
     this.generateWalls();
 
-    this.generateObjects();
+    // this.generateObjects();
 
     this.renderTiles();
 
@@ -57,13 +57,15 @@ LandGeneration.prototype.generate = function() {
 
 
 LandGeneration.prototype.generateFloorHardCoded = function () {
-    this.floors = [
-        [0, 0, 0, 1, 1],
-        [0, 1, 1, 1, 1],
-        [0, 1, 1, 1, 1],
-        [1, 1, 0, 0, 1],
-        [1, 1, 0, 0, 1],
-    ]
+    for (var y = 0; y < this.floorLength; y++) {
+        var row = [];
+        for (var x = 0; x < this.floorWidth; x++) {
+            row.push(0);
+        }
+        this.floors.push(row);
+    }
+
+    this.addRoom(3, 6, 3, 3, 6);
 }
 
 LandGeneration.prototype.generateFloor = function () {
@@ -77,7 +79,8 @@ LandGeneration.prototype.generateFloor = function () {
     }
 
     // // Entrance hallway
-    var entranceWidth = this.randomInt(1, 3);
+    // var entranceWidth = this.randomInt(1, 3);
+    var entranceWidth = 1;
     var entranceLength = this.randomInt(2, 4);
 
 
@@ -198,7 +201,6 @@ LandGeneration.prototype.randomInt = function(start, end) {
 LandGeneration.prototype.addRoom = function(x, y, width, length, type) {
 
     console.log("New room generated from coordinates (" + x + ", " + y + "), with width " + width + " and length " + length + ". Type: " + this.floorNames[type]);
-
     for (var i = x; i < x + width; i++) {
         if (i > 0 && i < this.floorWidth) {
             for (var j = y; j < y + length; j++) {
@@ -278,6 +280,7 @@ LandGeneration.prototype.renderTiles = function () {
         }
     }
     console.log(this.floors);
+    console.log(this.walls);
     console.log(this.objects);
     // Rendering Objects
     var object;
@@ -309,5 +312,7 @@ LandGeneration.prototype.renderTiles = function () {
             }
         }
     }
+
+    this.game.iso.simpleSort(this.wallGroup);
 
 }

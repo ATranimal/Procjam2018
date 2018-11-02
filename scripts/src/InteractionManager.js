@@ -35,13 +35,15 @@ InteractionManager.prototype.highlightWalls = function (cursorPos) {
 
         var radius = 75;
         var inBounds = x < cursorPos.x + radius && x > cursorPos.x - radius && y > cursorPos.y - radius && y < cursorPos.y + radius;
-        if (!wall.selected && inBounds) {
-            wall.selected = true;            
-            self.game.add.tween(wall).to({ alpha: 0 }, 500, Phaser.Easing.Quadratic.InOut, true);
-        }
-        else if (wall.selected && !inBounds) {
-            wall.selected = false;
-            self.game.add.tween(wall).to({ alpha: 1 }, 500, Phaser.Easing.Quadratic.InOut, true);
+        if (wall.isoPosition.z === 0) {
+            if (!wall.selected && inBounds) {
+                wall.selected = true;            
+                self.game.add.tween(wall).to({ alpha: 0 }, 500, Phaser.Easing.Quadratic.InOut, true);
+            }
+            else if (wall.selected && !inBounds) {
+                wall.selected = false;
+                self.game.add.tween(wall).to({ alpha: 1 }, 500, Phaser.Easing.Quadratic.InOut, true);
+            }
         }
     });
 
