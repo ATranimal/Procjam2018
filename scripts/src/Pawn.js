@@ -54,8 +54,11 @@ Pawn.prototype.move = function(x, y) {
         this.pawn.animations.play('happy-walk');
     }
 
-    var tween = this.game.add.tween(this.pawn).to({ isoY: this.coordinates[1] * 36, isoX: this.coordinates[0] * 36 }, 3000, Phaser.Easing.Quadratic.InOut, true);
-
+    var self = this;
+    var tween = this.game.add.tween(this.pawn).to({ isoY: this.coordinates[1] * 36, isoX: this.coordinates[0] * 36 }, 1000, Phaser.Easing.Quadratic.InOut, true);
+    tween.onComplete.add(function () {
+        self.game.iso.simpleSort(self.landGenerator.wallGroup);
+    });
     this.addVisitedFloor(this.coordinates[0], this.coordinates[1]);
 }
 
@@ -65,12 +68,54 @@ Pawn.prototype.move = function(x, y) {
 
 
 Pawn.prototype.update = function () {
-    if (this.game.time.now - this.time > 6000) {
+    if (this.game.time.now - this.time > 2000) {
         this.time = this.game.time.now;;
 
         //// RNG DIFFERENT ACTIONS
 
         // Explore Room
+        var adjacentTiles = [];
+        if (this.coordinates[0] - 1 > 0){
+            adjacentTiles.push([this.coordinates[0]-1, this.coordinates[1]]);
+        }
+        if (this.coordinates[0] + 1 < this.landGenerator.floorWidth){
+            adjacentTiles.push([this.coordinates[0]+1, this.coordinates[1]]);
+        }
+        if (this.coordinates[1] - 1 > 0){
+            adjacentTiles.push([this.coordinates[0], this.coordinates[1]-1]);
+        }
+        if (this.coordinates[1] + 1 < this.landGenerator.floorLength){
+            adjacentTiles.push([this.coordinates[0], this.coordinates[1]+1]);
+        }
+
+        // 2. Check if the floor type is the same
+        var validTiles = [];
+        for (var i = 0; i < adjacentTiles.length; i++) {
+            var x = adjacentTiles[i][0];
+            var y = adjacentTiles[i][1];
+            if (this.landGenerator.floors[y][x] == this.landGenerator.floors[this.coordinates[1]][this.coordinates[0]] ) {
+                validTiles.push([ x, y ]);
+            }
+        }
+
+        // 3. randomize between floor types including the visited room value in the rng
+        var unvisitedFloors = [];
+        for (var i = 0; i < validTiles.length; i++) {
+            var x = validTiles[i][0];
+            var y = validTiles[i][1];
+            if (this.visitedFloor[y][x] == 0) {
+                unvisitedFloors.push([x, y]);
+            }
+        }
+
+        if (unvisitedFloors.length != 0) {
+            var choice = this.landGenerator.randomInt(0, unvisitedFloors.length - 1);
+            this.move(unvisitedFloors[choice][0], unvisitedFloors[choice][1]);
+        }
+        else if (validTiles.length != 0) {
+            var choice = this.landGenerator.randomInt(0, validTiles.length - 1);
+            this.move(validTiles[choice][0], validTiles[choice][1]);
+        }
 
         // Move to different room
     }

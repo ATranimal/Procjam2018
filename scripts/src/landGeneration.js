@@ -49,7 +49,7 @@ LandGeneration.prototype.generate = function() {
  
     this.generateWalls();
 
-    // this.generateObjects();
+    this.generateObjects();
 
     this.renderTiles();
 
@@ -287,7 +287,7 @@ LandGeneration.prototype.renderTiles = function () {
     for (var y = 0; y < this.objects.length; y++) {
         for (var x = 0; x < this.objects[y].length; x++) {
             if (this.objects[y][x] != 0) {
-                object = this.game.add.isoSprite(x * 36, y * 36, 0, 'objects', this.objectNames[this.objects[y][x]], this.objectGroup);
+                object = this.game.add.isoSprite(x * 36, y * 36, 0, 'objects', this.objectNames[this.objects[y][x]], this.wallGroup);
                 object.anchor.set(0.5, 0.5);
             }
         }
