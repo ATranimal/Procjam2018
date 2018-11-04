@@ -26,3 +26,5 @@ colors (represented in 10s column):
 0x. blue
 1x. yellow
 2x. red
+
+Doors: 1x

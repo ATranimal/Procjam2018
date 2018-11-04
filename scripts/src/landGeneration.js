@@ -29,7 +29,12 @@ var LandGeneration = function (game) {
     this.wallNames[4] = "wall-bedroom-b";
     this.wallNames[5] = "wall-kitchenw-b";
     this.wallNames[6] = "wall-bedroom-b";
-
+    this.wallNames[11] = "wall-attic-door-closed-b";
+    this.wallNames[12] = "wall-attic-door-closed-b";
+    this.wallNames[13] = "wall-bathroom-door-closed-b";
+    this.wallNames[14] = "wall-bedroom-door-closed-b";
+    this.wallNames[15] = "wall-kitchen-door-closed-b";
+    this.wallNames[16] = "wall-bedroom-door-closed-b";
 
     // Objects
     this.objects = [];
@@ -45,10 +50,12 @@ var LandGeneration = function (game) {
  
 LandGeneration.prototype.generate = function() {
     // this.generateFloorHardCoded();
-    this.generateFloor();
  
-    this.generateWalls();
+    this.initWallArray();
 
+    
+    this.generateFloor();
+    this.generateWalls();
     this.generateObjects();
 
     this.renderTiles();
@@ -87,8 +94,8 @@ LandGeneration.prototype.generateFloor = function () {
     this.addRoom(3, this.floorLength - entranceLength, entranceWidth, entranceLength, 6);
 
     // Test 1
-    var roomsOnFloor = this.randomInt(4, 6);
-    // var roomsOnFloor = 0;
+    // var roomsOnFloor = this.randomInt(4, 6);
+    var roomsOnFloor = 3;
 
     for (var i = 0; i < roomsOnFloor; i++) {        
         
@@ -98,12 +105,33 @@ LandGeneration.prototype.generateFloor = function () {
         
         var xy = randomCoordinate[2];
         var direction = randomCoordinate[3];
+
+        // for walls
+        if (xy === 0) {
+            if (direction == 1) {
+                this.walls[randomCoordinate[1]][randomCoordinate[0]] = 10;
+            }
+            else {
+                this.walls[randomCoordinate[1]][randomCoordinate[0] - direction] = 10;
+            }
+            
+        }
+        else {
+            if (direction == 1) {
+                this.walls[randomCoordinate[1]][randomCoordinate[0]] = 10;
+            }
+            else {
+                this.walls[randomCoordinate[1] - direction][randomCoordinate[0]] = 10;
+            }
+        }
         
         var newX;
         var newY;
         var newWidth;
         var newLength;
         var newType;
+
+        
 
         //TODO: Could optimize this by only setting variables at the end using the random coordinate trackers
         if (xy === 0) {
@@ -152,28 +180,29 @@ LandGeneration.prototype.generateFloor = function () {
     }
 }
 
+LandGeneration.prototype.initWallArray = function () {
+    for(var y = 0; y < this.floorLength; y++) {
+        var row = [];
+        for(var x = 0; x < this.floorWidth; x++) {
+            row.push(0);
+        }
+        this.walls.push(row);
+    }
+}
+
 LandGeneration.prototype.generateWalls = function () {
     // For horizontal walls
     for (var y = 0; y < this.floorLength; y++) {
-        var row = [];
-
         // Check the outer walls
         if (this.floors[y][0] != 0) {   
-            row.push(1);
-        }
-        else {
-            row.push(0);
+            this.walls[y][0] += 1;
         }
 
         for (var x = 1; x < this.floorWidth; x++) {
             if (this.floors[y][x] != this.floors[y][x-1]) {
-                row.push(1);
-            }
-            else {
-                row.push(0);
+                this.walls[y][x] += 1;
             }
         }
-        this.walls.push(row);
     }
 
     // For vertical walls
@@ -268,6 +297,11 @@ LandGeneration.prototype.generateObjects = function () {
 
 
 LandGeneration.prototype.renderTiles = function () {  
+    
+    console.log(this.floors);
+    console.log(this.walls);
+    console.log(this.objects);
+
     // Rendering the floor
     var tile;
     for (var y = 0; y < this.floors.length; y++) {
@@ -279,16 +313,13 @@ LandGeneration.prototype.renderTiles = function () {
             }
         }
     }
-    console.log(this.floors);
-    console.log(this.walls);
-    console.log(this.objects);
     // Rendering Objects
     var object;
     for (var y = 0; y < this.objects.length; y++) {
         for (var x = 0; x < this.objects[y].length; x++) {
             if (this.objects[y][x] != 0) {
                 object = this.game.add.isoSprite(x * 36, y * 36, 0, 'objects', this.objectNames[this.objects[y][x]], this.wallGroup);
-                object.anchor.set(0.5, 0.5);
+                object.anchor.set(0, 0);
             }
         }
     }
@@ -309,6 +340,18 @@ LandGeneration.prototype.renderTiles = function () {
                     wall = this.game.add.isoSprite(x * 36, y * 36, 0, 'tileset', this.wallNames[this.floors[y][x]], this.wallGroup);
                     wall.anchor.set(0, 0.72);
                 }
+                
+                if (this.walls[y][x] === 11 || this.walls[y][x] === 13 ) {
+                    wall = this.game.add.isoSprite(x*36, y * 36, 0, 'tileset', this.wallNames[10 + this.floors[y][x]], this.wallGroup);
+                    wall.anchor.set(0, 0.72);
+                    wall.scale.x *= -1;
+                }
+
+                if (this.walls[y][x] === 12 || this.walls[y][x] === 13) {
+                    wall = this.game.add.isoSprite(x * 36, y * 36, 0, 'tileset', this.wallNames[10 + this.floors[y][x]], this.wallGroup);
+                    wall.anchor.set(0, 0.72);
+                }
+                
             }
         }
     }
