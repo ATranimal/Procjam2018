@@ -40,6 +40,18 @@ Pawn.prototype.addVisitedFloor = function(x, y) {
 }
 
 Pawn.prototype.move = function(x, y) {
+    // console.log(x-this.coordinates[1]);
+    // console.log(y-this.coordinates[0]);
+    if (x - this.coordinates[0] < 0) {
+        this.pawn.animations.play('happy-walk-back');
+    }
+    else if (y - this.coordinates[1] < 0) {
+        this.pawn.animations.play('happy-walk-back');
+    }
+    else {
+        this.pawn.animations.play('happy-walk');
+    }
+
     if (y != this.coordinates[1]) {
         this.coordinates[1] = y;
     }
@@ -47,19 +59,14 @@ Pawn.prototype.move = function(x, y) {
         this.coordinates[0] = x;
     }
 
-    if (x - this.coordinates[1] < 0 || y - this.coordinates[0] < 0) {
-        this.pawn.animations.play('happy-walk-back');
-    }
-    else {
-        this.pawn.animations.play('happy-walk');
-    }
-
     var self = this;
     var tween = this.game.add.tween(this.pawn).to({ isoY: this.coordinates[1] * 36, isoX: this.coordinates[0] * 36 }, 1000, Phaser.Easing.Quadratic.InOut, true);
     tween.onComplete.add(function () {
         self.game.iso.simpleSort(self.landGenerator.wallGroup);
     });
+
     this.addVisitedFloor(this.coordinates[0], this.coordinates[1]);
+    
 }
 
 
