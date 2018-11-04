@@ -78,7 +78,6 @@ Pawn.prototype.update = function () {
     if (this.game.time.now - this.time > 2000) {
         this.time = this.game.time.now;;
 
-        //// RNG DIFFERENT ACTIONS
 
         // Explore Room
         var adjacentTiles = [];
@@ -93,6 +92,20 @@ Pawn.prototype.update = function () {
         }
         if (this.coordinates[1] + 1 < this.landGenerator.floorLength){
             adjacentTiles.push([this.coordinates[0], this.coordinates[1]+1]);
+        }
+
+        // 1. Check if there is a door and unexplored room of different type 
+        var roomMove = [];
+        for (var i = 0; i < adjacentTiles.length; i++) {
+            var x = adjacentTiles[i][0];
+            var y = adjacentTiles[i][1];
+            // Check different floor
+            if (this.landGenerator.floors[y][x] != this.landGenerator.floors[this.coordinates[1]][this.coordinates[0]] && this.landGenerator.floors[y][x] != 0) {
+                // Check door on current and lower levels
+                if (this.landGenerator.walls[this.coordinates[1]][this.coordinates[0]] > 10 || this.landGenerator.walls[y][x] > 10) {
+                    roomMove.push([x, y]);
+                }
+            }
         }
 
         // 2. Check if the floor type is the same
@@ -115,15 +128,30 @@ Pawn.prototype.update = function () {
             }
         }
 
-        if (unvisitedFloors.length != 0) {
-            var choice = this.landGenerator.randomInt(0, unvisitedFloors.length - 1);
-            this.move(unvisitedFloors[choice][0], unvisitedFloors[choice][1]);
-        }
-        else if (validTiles.length != 0) {
-            var choice = this.landGenerator.randomInt(0, validTiles.length - 1);
-            this.move(validTiles[choice][0], validTiles[choice][1]);
+        var moved = false;
+        if (roomMove.length > 0) {
+            // If the room move is unvisited, do that action
+            if (this.visitedFloor[roomMove[0][1]][roomMove[0][0]] == 0) {
+                this.move(roomMove[0][0], roomMove[0][1]);
+                moved = true;
+            } 
+            // Else add it to the pool of valid moves
+            else {
+                validTiles.push([roomMove[0][0], roomMove[0][1]])
+            }
         }
 
-        // Move to different room
+        if (!moved) {
+            if (unvisitedFloors.length != 0) {
+                var choice = this.landGenerator.randomInt(0, unvisitedFloors.length - 1);
+                this.move(unvisitedFloors[choice][0], unvisitedFloors[choice][1]);
+            }
+    
+    
+            else if (validTiles.length != 0) {
+                var choice = this.landGenerator.randomInt(0, validTiles.length - 1);
+                this.move(validTiles[choice][0], validTiles[choice][1]);
+            }
+        }
     }
 }

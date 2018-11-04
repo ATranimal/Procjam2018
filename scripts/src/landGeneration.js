@@ -94,8 +94,8 @@ LandGeneration.prototype.generateFloor = function () {
     this.addRoom(3, this.floorLength - entranceLength, entranceWidth, entranceLength, 6);
 
     // Test 1
-    // var roomsOnFloor = this.randomInt(4, 6);
-    var roomsOnFloor = 3;
+    var roomsOnFloor = this.randomInt(4, 6);
+    // var roomsOnFloor = 3;
 
     for (var i = 0; i < roomsOnFloor; i++) {        
         
@@ -109,19 +109,19 @@ LandGeneration.prototype.generateFloor = function () {
         // for walls
         if (xy === 0) {
             if (direction == 1) {
-                this.walls[randomCoordinate[1]][randomCoordinate[0]] = 10;
+                this.walls[randomCoordinate[1]][randomCoordinate[0]] += 10;
             }
             else {
-                this.walls[randomCoordinate[1]][randomCoordinate[0] - direction] = 10;
+                this.walls[randomCoordinate[1]][randomCoordinate[0] - direction] += 10;
             }
             
         }
         else {
             if (direction == 1) {
-                this.walls[randomCoordinate[1]][randomCoordinate[0]] = 10;
+                this.walls[randomCoordinate[1]][randomCoordinate[0]] += 10;
             }
             else {
-                this.walls[randomCoordinate[1] - direction][randomCoordinate[0]] = 10;
+                this.walls[randomCoordinate[1] - direction][randomCoordinate[0]] += 10;
             }
         }
         
