@@ -1,6 +1,7 @@
 window.onload = function() {
 
-    var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', null, true, false);
+    var game = new Phaser.Game(800, 800, Phaser.AUTO, 'game', null, true, false);
+
     
     var Game = function (game) { };
     
@@ -9,6 +10,7 @@ window.onload = function() {
     var floorGroup, wallGroup, objectGroup, pawnGroup, cursorPos, cursor;
     
     var landGenerator, interaction, pawn;
+    var slickUI;
     
     Game.Boot.prototype =
     {
@@ -16,7 +18,8 @@ window.onload = function() {
             game.load.atlas('tileset', "../assets/tiles/tileset.png", "../assets/tiles/tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
             game.load.atlas('objects', "../assets/tiles/objects-tileset.png", "../assets/tiles/objects-tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
             game.load.atlas('boys', "../assets/tiles/boys-tileset.png", "../assets/tiles/boys-tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
-
+            slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
+            slickUI.load('assets/kenney.json')
 
             game.time.advancedTiming = true;
     
@@ -28,24 +31,55 @@ window.onload = function() {
             game.iso.anchor.setTo(0.5, 0.2);
         },
         create: function () {
-            //Instantiate land generator
-            landGenerator = new LandGeneration(game);
-            // Let's make a load of tiles on a grid.
-            landGenerator.generate();
-            floorGroup = landGenerator.floorGroup;
-            wallGroup = landGenerator.wallGroup;
-            // objectGroup = landGenerator.objectGroup;
+            this.resetGame(1);
+            
+            // UI
+            var panel;  
+            slickUI.add(panel = new SlickUI.Element.Panel(32, 0, game.width - 64, 100));
 
-            // Instantiate Pawn
-            pawn = new Pawn(game, landGenerator);
-            pawn.init();
-            pawnGroup = pawn.pawnGroup;
+            // House
+            panel.add(new SlickUI.Element.Text(120, 5, "House Size"));
+            
+            var sizeSmall = new SlickUI.Element.Button(70, 40, 30, 30);
+            panel.add(sizeSmall);
+            sizeSmall.add(new SlickUI.Element.Text(0,0, "Small")).center();
+            sizeSmall.events.onInputUp.add(function () {console.log('Clicked button');});
+            
+            var sizeMedium = new SlickUI.Element.Button(150, 40, 30, 30);
+            panel.add(sizeMedium);
+            sizeMedium.add(new SlickUI.Element.Text(0,0, "Medium")).center();
+            sizeMedium.events.onInputUp.add(function () {console.log('Clicked button');});
 
-            // Instantiate Interaction Manager
-            interaction = new InteractionManager(game, floorGroup, wallGroup);
-            game.iso.simpleSort(wallGroup);
-            // Provide a 3D position for the cursor
-            cursorPos = new Phaser.Plugin.Isometric.Point3();
+            var sizeLarge = new SlickUI.Element.Button(230, 40, 30, 30);
+            panel.add(sizeLarge);
+            sizeLarge.add(new SlickUI.Element.Text(0,0, "Large")).center();
+            sizeLarge.events.onInputUp.add(function () {console.log('Clicked button');});
+
+            // Room Number
+            panel.add(new SlickUI.Element.Text(500, 5, "Room Number"));
+            
+            var roomSmall = new SlickUI.Element.Button(470, 40, 30, 30);
+            panel.add(roomSmall);
+            roomSmall.add(new SlickUI.Element.Text(0,0, "Small")).center();
+            roomSmall.events.onInputUp.add(function () {console.log('Clicked button');});
+            
+            var roomMedium = new SlickUI.Element.Button(550, 40, 30, 30);
+            panel.add(roomMedium);
+            roomMedium.add(new SlickUI.Element.Text(0,0, "Medium")).center();
+            roomMedium.events.onInputUp.add(function () {console.log('Clicked button');});
+            
+            var roomLarge = new SlickUI.Element.Button(630, 40, 30, 30);
+            panel.add(roomLarge);
+            roomLarge.add(new SlickUI.Element.Text(0,0, "Large")).center();
+            roomLarge.events.onInputUp.add(function () {console.log('Clicked button');});
+
+            // Refresh
+            var reset = new SlickUI.Element.Button(315, 20, 100, 50);
+            panel.add(reset);
+            reset.add(new SlickUI.Element.Text(0,0, "Reset")).center();
+
+            var self = this;
+            reset.events.onInputUp.add(function () { self.resetGame(0) });
         },
         update: function () {
             // Update the cursor position.
@@ -61,6 +95,30 @@ window.onload = function() {
         render: function () {
             game.debug.text("I love Kaelan");
     
+        },
+        resetGame: function (init) {
+            if (init == 0) {
+                floorGroup.destroy();
+                wallGroup.destroy();
+            }
+
+            landGenerator = new LandGeneration(game);
+            landGenerator.generate();
+            floorGroup = landGenerator.floorGroup;
+            wallGroup = landGenerator.wallGroup;
+            // objectGroup = landGenerator.objectGroup;
+
+            // Instantiate Pawn
+            pawn = new Pawn(game, landGenerator);
+            pawn.init();
+            pawnGroup = pawn.pawnGroup;
+
+            // Instantiate Interaction Manager
+            interaction = new InteractionManager(game, floorGroup, wallGroup);
+            game.iso.simpleSort(wallGroup);
+            // Provide a 3D position for the cursor
+            cursorPos = new Phaser.Plugin.Isometric.Point3();
+
         },
     };
     
