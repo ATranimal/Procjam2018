@@ -231,9 +231,9 @@ LandGeneration.prototype.addRoom = function(x, y, width, length, type) {
 
     console.log("New room generated from coordinates (" + x + ", " + y + "), with width " + width + " and length " + length + ". Type: " + this.floorNames[type]);
     for (var i = x; i < x + width; i++) {
-        if (i > 0 && i < this.floorWidth) {
+        if (i >= 0 && i < this.floorWidth) {
             for (var j = y; j < y + length; j++) {
-                if (j > 0 && j < this.floorLength) {
+                if (j >= 0 && j < this.floorLength) {
                     if (this.floors[j][i] === 0) {
                         this.floors[j][i] = type;
                     }
@@ -342,7 +342,7 @@ LandGeneration.prototype.renderTiles = function () {
                 }
                 
                 if (this.walls[y][x] === 11 || this.walls[y][x] === 13 ) {
-                    wall = this.game.add.isoSprite(x*36, y * 36, 0, 'tileset', this.wallNames[10 + this.floors[y][x]], this.wallGroup);
+                    wall = this.game.add.isoSprite(x * 36, y * 36, 0, 'tileset', this.wallNames[10 + this.floors[y][x]], this.wallGroup);
                     wall.anchor.set(0, 0.72);
                     wall.scale.x *= -1;
                 }
