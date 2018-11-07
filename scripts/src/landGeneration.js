@@ -43,11 +43,9 @@ var LandGeneration = function (game, house, room) {
     this.objectGroup = this.game.add.group();
     this.objectNames = [];
     this.objectNames[0] = "empty";
-    this.objectNames[1] = "object-livingroom-woodchair-b";
-    this.objectNames[2] = "object-livingroom-fancychair-back-b";
-    this.objectNames[3] = "object-livingroom-armchair-b";
-    this.objectNames[4] = "object-kitchen-fridge-b"
-    this.objectNames[5] = "object-kitchen-counter-b";
+    this.objectNames[5] = ["object-kitchen-counter-b", "object-kitchen-counter-corner-b", "object-kitchen-fridge-b", "object-kitchen-kitchenstool-b", "object-kitchen-kitchentable-b", "object-kitchen-stove-b"];
+    this.objectNames[1] = ["object-livingroom-armchair-b", "object-livingroom-armchair-back-b", "object-livingroom-chair-b", "object-livingroom-chair-back-b", "object-livingroom-fancychair-b", "object-livingroom-fancychair-back-b", "object-livingroom-woodchair-b", "object-livingroom-woodchair-back-b"];
+    this.objectNames[2] = ["object-livingroom-armchair-b", "object-livingroom-armchair-back-b", "object-livingroom-chair-b", "object-livingroom-chair-back-b", "object-livingroom-fancychair-b", "object-livingroom-fancychair-back-b", "object-livingroom-woodchair-b", "object-livingroom-woodchair-back-b"];
 }
  
 LandGeneration.prototype.generate = function() {
@@ -299,8 +297,8 @@ LandGeneration.prototype.generateObjects = function () {
     for(var y = 0; y < this.floors.length; y++) {
         var row = [];
         for(var x = 0; x < this.floors[y].length; x++) {
-            if (this.floors[y][x] != 0 && this.randomInt(1, 100) < 10) {
-                row.push(this.randomInt(1,5));
+            if (this.floors[y][x] != 0 && this.randomInt(1, 100) < 15) {
+                row.push(1);
             }
             else { 
                 row.push(0);
@@ -312,7 +310,7 @@ LandGeneration.prototype.generateObjects = function () {
 }
 
 
-LandGeneration.prototype.renderTiles = function () {  
+LandGeneration.prototype.renderTiles = function () {
     
     console.log(this.floors);
     console.log(this.walls);
@@ -334,8 +332,10 @@ LandGeneration.prototype.renderTiles = function () {
     for (var y = 0; y < this.objects.length; y++) {
         for (var x = 0; x < this.objects[y].length; x++) {
             if (this.objects[y][x] != 0) {
-                object = this.game.add.isoSprite(x * 36, y * 36, 0, 'objects', this.objectNames[this.objects[y][x]], this.wallGroup);
-                object.anchor.set(0, 0);
+                if (this.floors[y][x] == 5 || this.floors[y][x] == 1 || this.floors[y][x] == 2) {
+                    object = this.game.add.isoSprite(x * 36, y * 36, 0, 'objects', this.objectNames[this.floors[y][x]][this.randomInt(0, this.objectNames[this.floors[y][x]].length)], this.wallGroup);
+                    object.anchor.set(0, 0.72);
+                }
             }
         }
     }
@@ -373,5 +373,4 @@ LandGeneration.prototype.renderTiles = function () {
     }
 
     this.game.iso.simpleSort(this.wallGroup);
-
 }
