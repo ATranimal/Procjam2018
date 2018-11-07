@@ -102,8 +102,18 @@ Pawn.prototype.update = function () {
             // Check different floor
             if (this.landGenerator.floors[y][x] != this.landGenerator.floors[this.coordinates[1]][this.coordinates[0]] && this.landGenerator.floors[y][x] != 0) {
                 // Check door on current and lower levels
-                if (this.landGenerator.walls[this.coordinates[1]][this.coordinates[0]] > 10 || this.landGenerator.walls[y][x] > 10) {
+                if (this.landGenerator.walls[this.coordinates[1]][this.coordinates[0]] > 10) {
                     roomMove.push([x, y]);
+                }
+                else if (x - this.coordinates[0] == 1) {
+                    if ( this.landGenerator.walls[y][x] == 11 || this.landGenerator.walls[y][x] == 13 ) {
+                        roomMove.push([x, y]);
+                    }
+                }
+                else if (y - this.coordinates[0] == 1 ) {
+                    if ( this.landGenerator.walls[y][x] == 12 || this.landGenerator.walls[y][x] == 13 ) {
+                        roomMove.push([x, y]);
+                    }
                 }
             }
         }

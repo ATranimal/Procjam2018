@@ -109,19 +109,19 @@ LandGeneration.prototype.generateFloor = function () {
         // for walls
         if (xy === 0) {
             if (direction == 1) {
-                this.walls[randomCoordinate[1]][randomCoordinate[0]] += 10;
+                this.walls[randomCoordinate[1]][randomCoordinate[0]] = 10;
             }
             else {
-                this.walls[randomCoordinate[1]][randomCoordinate[0] - direction] += 10;
+                this.walls[randomCoordinate[1]][randomCoordinate[0] - direction] = 10;
             }
             
         }
         else {
             if (direction == 1) {
-                this.walls[randomCoordinate[1]][randomCoordinate[0]] += 10;
+                this.walls[randomCoordinate[1]][randomCoordinate[0]] = 10;
             }
             else {
-                this.walls[randomCoordinate[1] - direction][randomCoordinate[0]] += 10;
+                this.walls[randomCoordinate[1] - direction][randomCoordinate[0]] = 10;
             }
         }
         
