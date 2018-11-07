@@ -15,9 +15,9 @@ window.onload = function() {
     Game.Boot.prototype =
     {
         preload: function () {
-            game.load.atlas('tileset', "../assets/tiles/tileset.png", "../assets/tiles/tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
-            game.load.atlas('objects', "../assets/tiles/objects-tileset.png", "../assets/tiles/objects-tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
-            game.load.atlas('boys', "../assets/tiles/boys-tileset.png", "../assets/tiles/boys-tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
+            game.load.atlas('tileset', "../Procjam2018/assets/tiles/tileset.png", "../assets/tiles/tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
+            game.load.atlas('objects', "../Procjam2018/assets/tiles/objects-tileset.png", "../assets/tiles/objects-tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
+            game.load.atlas('boys', "../Procjam2018/assets/tiles/boys-tileset.png", "../assets/tiles/boys-tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
             slickUI = game.plugins.add(Phaser.Plugin.SlickUI);
             slickUI.load('assets/kenney.json')
 
