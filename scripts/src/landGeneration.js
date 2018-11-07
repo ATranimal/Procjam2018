@@ -1,9 +1,11 @@
-var LandGeneration = function (game) {
+var LandGeneration = function (game, house, room) {
     this.game = game;
 
     // Width & Length of story
-    this.floorWidth = 8;
-    this.floorLength = 8;
+    this.floorWidth;
+    this.floorLength;
+    this.house = house;
+    this.room = room;
 
     //////////
     // There will be 3 isogroups per story : Floor, Walls, Objects
@@ -50,7 +52,7 @@ var LandGeneration = function (game) {
  
 LandGeneration.prototype.generate = function() {
     // this.generateFloorHardCoded();
- 
+    this.setWidthLength();
     this.initWallArray();
 
     
@@ -62,6 +64,20 @@ LandGeneration.prototype.generate = function() {
 
 }
 
+LandGeneration.prototype.setWidthLength = function () {
+    if (this.house == 1) {
+        this.floorWidth = 8;
+        this.floorLength = 8;
+    }
+    else if (this.house == 2) {
+        this.floorWidth = 14;
+        this.floorLength = 14;
+    } 
+    else if (this.house == 3) {
+        this.floorWidth = 20;
+        this.floorLength = 20;
+    }
+}
 
 LandGeneration.prototype.generateFloorHardCoded = function () {
     for (var y = 0; y < this.floorLength; y++) {
@@ -86,15 +102,15 @@ LandGeneration.prototype.generateFloor = function () {
     }
 
     // // Entrance hallway
-    var entranceWidth = this.randomInt(1, 3);
+    var entranceWidth = this.randomInt(1 * this.house, 3 * this.house - this.house);
     // var entranceWidth = 1;
-    var entranceLength = this.randomInt(2, 4);
+    var entranceLength = this.randomInt(2 * this.house, 4 * this.house - this.house);
 
 
-    this.addRoom(3, this.floorLength - entranceLength, entranceWidth, entranceLength, 6);
+    this.addRoom(3 * (this.house), this.floorLength - entranceLength, entranceWidth, entranceLength, 6);
 
     // Test 1
-    var roomsOnFloor = this.randomInt(4, 6);
+    var roomsOnFloor = this.randomInt(2 * this.room, 3 * this.room + this.room);
     // var roomsOnFloor = 3;
 
     for (var i = 0; i < roomsOnFloor; i++) {        
@@ -135,10 +151,10 @@ LandGeneration.prototype.generateFloor = function () {
 
         //TODO: Could optimize this by only setting variables at the end using the random coordinate trackers
         if (xy === 0) {
-            newWidth = this.randomInt(1,3);
+            newWidth = this.randomInt(1, 5 * this.house - 2 *this.house);
 
-            lengthUp = this.randomInt(0, 2);
-            lengthDown = this.randomInt(0, 2);
+            lengthUp = this.randomInt(0, 4 * this.house - 2 * this.house);
+            lengthDown = this.randomInt(0, 4 * this.house - 2 *this.house);
             newLength = 1 + lengthUp + lengthDown
             // newWidth = 4;
             // lengthUp = 2;
@@ -154,10 +170,10 @@ LandGeneration.prototype.generateFloor = function () {
             }
         }
         else if (xy == 1) {
-            newLength = this.randomInt(1, 3);
+            newLength = this.randomInt(1, 5 * this.house - 2 * this.house);
 
-            widthLeft = this.randomInt(0, 2);
-            widthRight = this.randomInt(0, 2);
+            widthLeft = this.randomInt(0, 4 * this.house - 2 * this.house);
+            widthRight = this.randomInt(0, 4 * this.house - 2 * this.house);
             
             newWidth = 1 + widthLeft + widthRight;
 
