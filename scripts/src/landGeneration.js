@@ -19,6 +19,12 @@ var LandGeneration = function (game, house, room) {
     this.floorNames[4] = "floor-bedroom-b";
     this.floorNames[5] = "floor-kitchen-b";
     this.floorNames[6] = "floor-livingroom-b";
+    this.floorNames[11] = "floor-attic-y";
+    this.floorNames[12] = "floor-basement-y";
+    this.floorNames[13] = "floor-bathroom-y";
+    this.floorNames[14] = "floor-bedroom-y";
+    this.floorNames[15] = "floor-kitchen-y";
+    this.floorNames[16] = "floor-livingroom-y";
 
     // Walls
     this.walls = [];

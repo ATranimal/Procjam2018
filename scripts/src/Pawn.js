@@ -85,13 +85,13 @@ Pawn.prototype.update = function (walk) {
 
         // Explore Room
         var adjacentTiles = [];
-        if (this.coordinates[0] - 1 > 0){
+        if (this.coordinates[0] - 1 >= 0){
             adjacentTiles.push([this.coordinates[0]-1, this.coordinates[1]]);
         }
         if (this.coordinates[0] + 1 < this.landGenerator.floorWidth){
             adjacentTiles.push([this.coordinates[0]+1, this.coordinates[1]]);
         }
-        if (this.coordinates[1] - 1 > 0){
+        if (this.coordinates[1] - 1 >= 0){
             adjacentTiles.push([this.coordinates[0], this.coordinates[1]-1]);
         }
         if (this.coordinates[1] + 1 < this.landGenerator.floorLength){

@@ -100,7 +100,7 @@ window.onload = function() {
             // Refresh
             var reset = new SlickUI.Element.Button(950, 20, 100, 50);
             panel.add(reset);
-            reset.add(new SlickUI.Element.Text(0,0, "Reset")).center();
+            reset.add(new SlickUI.Element.Text(0,0, "Refresh")).center();
 
             reset.events.onInputUp.add(function () { self.resetGame(0) });
         },
@@ -137,7 +137,7 @@ window.onload = function() {
             pawnGroup = pawn.pawnGroup;
 
             // Instantiate Interaction Manager
-            interaction = new InteractionManager(game, floorGroup, wallGroup);
+            interaction = new InteractionManager(game, pawn, floorGroup, wallGroup);
             game.iso.simpleSort(wallGroup);
             // Provide a 3D position for the cursor
             cursorPos = new Phaser.Plugin.Isometric.Point3();
