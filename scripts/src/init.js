@@ -16,7 +16,7 @@ window.onload = function() {
     Game.Boot.prototype =
     {
         preload: function () {
-            game..stage.disableVisibilityChange = true;
+            game.stage.disableVisibilityChange = true;
             game.load.atlas('tileset', "../Procjam2018/assets/tiles/tileset.png", "../Procjam2018/assets/tiles/tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
             game.load.atlas('objects', "../Procjam2018/assets/tiles/objects-tileset.png", "../Procjam2018/assets/tiles/objects-tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
             game.load.atlas('boys', "../Procjam2018/assets/tiles/boys-tileset.png", "../Procjam2018/assets/tiles/boys-tileset.json", null, Phaser.Loader.TEXTURE_ATLAS_JSON_ARRAY);
