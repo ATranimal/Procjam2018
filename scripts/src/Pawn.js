@@ -2,8 +2,9 @@ var Pawn = function (game, landGenerator) {
     this.game = game;
     this.pawn;
     this.landGenerator = landGenerator;
+    this.walk = 2;
 
-    this.coordinates = [3, this.landGenerator.floorLength - 1];
+    this.coordinates = [3 * this.landGenerator.house, this.landGenerator.floorLength - 1];
     this.visitedFloor = [];
 
     this.pawnGroup = this.game.add.group()
@@ -13,7 +14,7 @@ var Pawn = function (game, landGenerator) {
 
 Pawn.prototype.init = function init() {
     // Create Sprite
-    this.pawn = this.game.add.isoSprite(3 * 36, (this.coordinates[1]) * 36, 1, 'boys', 'happy1-back', this.landGenerator.wallGroup);
+    this.pawn = this.game.add.isoSprite(this.coordinates[0] * 36, (this.coordinates[1]) * 36, 1, 'boys', 'happy1-back', this.landGenerator.wallGroup);
     this.pawn.anchor.set(0.5, 0.5);
 
     // Instantiate Visited Floor;
@@ -60,7 +61,7 @@ Pawn.prototype.move = function(x, y) {
     }
 
     var self = this;
-    var tween = this.game.add.tween(this.pawn).to({ isoY: this.coordinates[1] * 36, isoX: this.coordinates[0] * 36 }, 1000, Phaser.Easing.Quadratic.InOut, true);
+    var tween = this.game.add.tween(this.pawn).to({ isoY: this.coordinates[1] * 36, isoX: this.coordinates[0] * 36 }, 1000 / this.walk, Phaser.Easing.Quadratic.InOut, true);
     tween.onComplete.add(function () {
         self.game.iso.simpleSort(self.landGenerator.wallGroup);
     });
@@ -69,25 +70,28 @@ Pawn.prototype.move = function(x, y) {
     
 }
 
-
+Pawn.prototype.setWalk = function(walk) {
+    this.walk = walk;
+}
 ////
 // #START REGION UPDATE
 
 
-Pawn.prototype.update = function () {
-    if (this.game.time.now - this.time > 2000) {
+Pawn.prototype.update = function (walk) {
+    this.walk = walk;
+    if (this.game.time.now - this.time > 1500 / this.walk) {
         this.time = this.game.time.now;;
 
 
         // Explore Room
         var adjacentTiles = [];
-        if (this.coordinates[0] - 1 > 0){
+        if (this.coordinates[0] - 1 >= 0){
             adjacentTiles.push([this.coordinates[0]-1, this.coordinates[1]]);
         }
         if (this.coordinates[0] + 1 < this.landGenerator.floorWidth){
             adjacentTiles.push([this.coordinates[0]+1, this.coordinates[1]]);
         }
-        if (this.coordinates[1] - 1 > 0){
+        if (this.coordinates[1] - 1 >= 0){
             adjacentTiles.push([this.coordinates[0], this.coordinates[1]-1]);
         }
         if (this.coordinates[1] + 1 < this.landGenerator.floorLength){
@@ -110,7 +114,7 @@ Pawn.prototype.update = function () {
                         roomMove.push([x, y]);
                     }
                 }
-                else if (y - this.coordinates[0] == 1 ) {
+                else if (y - this.coordinates[1] == 1 ) {
                     if ( this.landGenerator.walls[y][x] == 12 || this.landGenerator.walls[y][x] == 13 ) {
                         roomMove.push([x, y]);
                     }

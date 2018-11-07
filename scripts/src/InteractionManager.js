@@ -1,5 +1,6 @@
-var InteractionManager = function (game, floorGroup, wallGroup) {
+var InteractionManager = function (game, pawn, floorGroup, wallGroup) {
     this.game = game;
+    this.pawn = pawn;
     this.floorGroup = floorGroup;
     this.wallGroup = wallGroup;
 }
@@ -24,6 +25,17 @@ InteractionManager.prototype.highlightFloor = function (cursorPos) {
             self.game.add.tween(tile).to({ isoZ: 0 }, 200, Phaser.Easing.Quadratic.InOut, true);
         }
     });
+
+    this.floorGroup.forEach(function (tile) {
+        // console.log(self.pawn);
+        var inBounds = tile.isoBounds.containsXY(self.pawn.pawn.isoPosition.x, self.pawn.pawn.isoPosition.y) 
+        
+        if (inBounds) {
+            if (tile.frameName[tile.frameName.length -1] == "b") {
+                tile.frameName = tile.frameName.substring(0, tile.frameName.length - 1) + "y";
+            }
+        }
+    })
 }
 
 InteractionManager.prototype.highlightWalls = function (cursorPos) {

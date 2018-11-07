@@ -1,6 +1,6 @@
 window.onload = function() {
 
-    var game = new Phaser.Game(800, 800, Phaser.AUTO, 'game', null, true, false);
+    var game = new Phaser.Game(1440, 900, Phaser.AUTO, 'game', null, true, false);
 
     
     var Game = function (game) { };
@@ -10,6 +10,7 @@ window.onload = function() {
     var floorGroup, wallGroup, objectGroup, pawnGroup, cursorPos, cursor;
     
     var landGenerator, interaction, pawn;
+    var house, room, walk;
     var slickUI;
     
     Game.Boot.prototype =
@@ -31,11 +32,15 @@ window.onload = function() {
             game.iso.anchor.setTo(0.5, 0.2);
         },
         create: function () {
+            house = 2;
+            room = 2;
+            walk = 2;
             this.resetGame(1);
             
+            var self = this;
             // UI
             var panel;  
-            slickUI.add(panel = new SlickUI.Element.Panel(32, 0, game.width - 64, 100));
+            slickUI.add(panel = new SlickUI.Element.Panel(128, 0, game.width - 128, 100));
 
             // House
             panel.add(new SlickUI.Element.Text(120, 5, "House Size"));
@@ -43,42 +48,59 @@ window.onload = function() {
             var sizeSmall = new SlickUI.Element.Button(70, 40, 30, 30);
             panel.add(sizeSmall);
             sizeSmall.add(new SlickUI.Element.Text(0,0, "Small")).center();
-            sizeSmall.events.onInputUp.add(function () {console.log('Clicked button');});
+            sizeSmall.events.onInputUp.add(function () {house = 1; self.resetGame(0);});
             
             var sizeMedium = new SlickUI.Element.Button(150, 40, 30, 30);
             panel.add(sizeMedium);
             sizeMedium.add(new SlickUI.Element.Text(0,0, "Medium")).center();
-            sizeMedium.events.onInputUp.add(function () {console.log('Clicked button');});
+            sizeMedium.events.onInputUp.add(function () {house = 2; self.resetGame(0);});
 
             var sizeLarge = new SlickUI.Element.Button(230, 40, 30, 30);
             panel.add(sizeLarge);
             sizeLarge.add(new SlickUI.Element.Text(0,0, "Large")).center();
-            sizeLarge.events.onInputUp.add(function () {console.log('Clicked button');});
+            sizeLarge.events.onInputUp.add(function () {house = 3; self.resetGame(0);});
 
             // Room Number
-            panel.add(new SlickUI.Element.Text(500, 5, "Room Number"));
+            panel.add(new SlickUI.Element.Text(400, 5, "Room Number"));
             
-            var roomSmall = new SlickUI.Element.Button(470, 40, 30, 30);
+            var roomSmall = new SlickUI.Element.Button(370, 40, 30, 30);
             panel.add(roomSmall);
-            roomSmall.add(new SlickUI.Element.Text(0,0, "Small")).center();
-            roomSmall.events.onInputUp.add(function () {console.log('Clicked button');});
+            roomSmall.add(new SlickUI.Element.Text(0,0, "Low")).center();
+            roomSmall.events.onInputUp.add(function () {room = 1; self.resetGame(0);});
             
-            var roomMedium = new SlickUI.Element.Button(550, 40, 30, 30);
+            var roomMedium = new SlickUI.Element.Button(450, 40, 30, 30);
             panel.add(roomMedium);
             roomMedium.add(new SlickUI.Element.Text(0,0, "Medium")).center();
-            roomMedium.events.onInputUp.add(function () {console.log('Clicked button');});
+            roomMedium.events.onInputUp.add(function () {room = 2; self.resetGame(0);});
             
-            var roomLarge = new SlickUI.Element.Button(630, 40, 30, 30);
+            var roomLarge = new SlickUI.Element.Button(530, 40, 30, 30);
             panel.add(roomLarge);
-            roomLarge.add(new SlickUI.Element.Text(0,0, "Large")).center();
-            roomLarge.events.onInputUp.add(function () {console.log('Clicked button');});
+            roomLarge.add(new SlickUI.Element.Text(0,0, "Many")).center();
+            roomLarge.events.onInputUp.add(function () {room = 3; self.resetGame(0);});
+
+            // Room Number
+            panel.add(new SlickUI.Element.Text(700, 5, "Walking Speed"));
+
+            var walkSmall = new SlickUI.Element.Button(670, 40, 30, 30);
+            panel.add(walkSmall);
+            walkSmall.add(new SlickUI.Element.Text(0,0, "Slow")).center();
+            walkSmall.events.onInputUp.add(function () {walk = 1;});
+            
+            var walkMedium = new SlickUI.Element.Button(750, 40, 30, 30);
+            panel.add(walkMedium);
+            walkMedium.add(new SlickUI.Element.Text(0,0, "Medium")).center();
+            walkMedium.events.onInputUp.add(function () {walk = 2;});
+            
+            var walkLarge = new SlickUI.Element.Button(830, 40, 30, 30);
+            panel.add(walkLarge);
+            walkLarge.add(new SlickUI.Element.Text(0,0, "Fast")).center();
+            walkLarge.events.onInputUp.add(function () {walk = 3;});
 
             // Refresh
-            var reset = new SlickUI.Element.Button(315, 20, 100, 50);
+            var reset = new SlickUI.Element.Button(950, 20, 100, 50);
             panel.add(reset);
-            reset.add(new SlickUI.Element.Text(0,0, "Reset")).center();
+            reset.add(new SlickUI.Element.Text(0,0, "Refresh")).center();
 
-            var self = this;
             reset.events.onInputUp.add(function () { self.resetGame(0) });
         },
         update: function () {
@@ -90,7 +112,7 @@ window.onload = function() {
             interaction.highlightFloor(cursorPos);
             interaction.highlightWalls(cursorPos);
 
-            pawn.update();
+            pawn.update(walk);
         },
         render: function () {
             game.debug.text("I love Kaelan");
@@ -102,7 +124,7 @@ window.onload = function() {
                 wallGroup.destroy();
             }
 
-            landGenerator = new LandGeneration(game);
+            landGenerator = new LandGeneration(game, house, room);
             landGenerator.generate();
             floorGroup = landGenerator.floorGroup;
             wallGroup = landGenerator.wallGroup;
@@ -114,7 +136,7 @@ window.onload = function() {
             pawnGroup = pawn.pawnGroup;
 
             // Instantiate Interaction Manager
-            interaction = new InteractionManager(game, floorGroup, wallGroup);
+            interaction = new InteractionManager(game, pawn, floorGroup, wallGroup);
             game.iso.simpleSort(wallGroup);
             // Provide a 3D position for the cursor
             cursorPos = new Phaser.Plugin.Isometric.Point3();
